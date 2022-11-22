@@ -13,6 +13,10 @@ public class ContactServiceImpl implements ContactService {
 
     private ContactRepository contactRepository;
 
+    public ContactServiceImpl(ContactRepository contactRepository) {
+        this.contactRepository = contactRepository;
+    }
+
     @Override
     public Contact updateContact(Contact contact, UUID id) {
         return contactRepository.updateContact(contact, findIndexById(id));
@@ -28,9 +32,6 @@ public class ContactServiceImpl implements ContactService {
         return contactRepository.getContacts();
     }
 
-    public ContactServiceImpl(ContactRepository contactRepository) {
-        this.contactRepository = contactRepository;
-    }
 
     @Override
     public UUID saveContact(Contact contact) {
