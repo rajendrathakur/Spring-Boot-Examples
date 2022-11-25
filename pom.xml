@@ -7,7 +7,8 @@
 	<version>0.0.1-SNAPSHOT</version>
 	<modules>
 		<module>Spring-Boot-REST-No-DB</module>
-	</modules>
+        <module>Spring-Boot-REST-Exception-Handling</module>
+    </modules>
 	<name>spring-boot-examples</name>
 	<description>Parent Module for Spring Boot Examples</description>
 	<packaging>pom</packaging>

@@ -32,7 +32,6 @@ public class ContactServiceImpl implements ContactService {
         return contactRepository.getContacts();
     }
 
-
     @Override
     public UUID saveContact(Contact contact) {
         return contactRepository.saveContact(contact);
