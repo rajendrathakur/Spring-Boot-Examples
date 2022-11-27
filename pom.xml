@@ -9,6 +9,7 @@
 		<module>Spring-Boot-REST-No-DB</module>
         <module>Spring-Boot-REST-Exception-Handling</module>
         <module>Spring-Boot-H2-Validation-Example</module>
+        <module>Spring-Boot-OneToOne-UniDirectional-Mapping-H2</module>
     </modules>
 	<name>spring-boot-examples</name>
 	<description>Parent Module for Spring Boot Examples</description>
