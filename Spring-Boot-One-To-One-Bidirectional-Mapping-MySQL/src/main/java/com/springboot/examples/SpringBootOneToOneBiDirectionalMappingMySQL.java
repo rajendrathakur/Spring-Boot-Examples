@@ -8,17 +8,16 @@ import lombok.AllArgsConstructor;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
 @SpringBootApplication
 @AllArgsConstructor
-public class SpringBootOneToOneBiDirectionalMappingH2 implements CommandLineRunner {
+public class SpringBootOneToOneBiDirectionalMappingMySQL implements CommandLineRunner {
 
     private EmployeeRepository employeeRepository;
     private LaptopRepository laptopRepository;
 
     public static void main(String[] args) {
-        SpringApplication.run(SpringBootOneToOneBiDirectionalMappingH2.class, args);
+        SpringApplication.run(SpringBootOneToOneBiDirectionalMappingMySQL.class, args);
     }
 
     @Override
