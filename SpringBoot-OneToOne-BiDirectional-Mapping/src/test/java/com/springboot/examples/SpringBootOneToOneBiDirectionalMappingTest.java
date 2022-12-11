@@ -4,6 +4,7 @@ import com.springboot.examples.entity.Employee;
 import com.springboot.examples.entity.Laptop;
 import com.springboot.examples.repository.EmployeeRepository;
 import com.springboot.examples.repository.LaptopRepository;
+import com.springboot.examples.utility.LazyTesting;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -22,6 +23,9 @@ public class SpringBootOneToOneBiDirectionalMappingTest {
     @Autowired
     private LaptopRepository laptopRepository;
 
+    @Autowired
+    private LazyTesting lazyTesting;
+
     @Test
     public void insertRecords() {
         Employee employee = new Employee("Rajendra", 75000);
@@ -38,7 +42,7 @@ public class SpringBootOneToOneBiDirectionalMappingTest {
 
         Laptop laptop = new Laptop("Vaio", "Sony");
         laptop.setEmployee(employee);
-        employee.setLaptop(laptop);;
+        employee.setLaptop(laptop);
 
         employeeRepository.save(employee);
     }
@@ -59,18 +63,16 @@ public class SpringBootOneToOneBiDirectionalMappingTest {
 
     @Test
     public void mergeFreshRecords() {
-      Laptop laptop = laptopRepository.findById(3l).get();
-      Employee employee = employeeRepository.findById(3l).get();
-      laptop.setEmployee(employee);
-      employee.setLaptop(laptop);
-      employeeRepository.save(employee);
+        Laptop laptop = laptopRepository.findById(3l).get();
+        Employee employee = employeeRepository.findById(3l).get();
+        laptop.setEmployee(employee);
+        employee.setLaptop(laptop);
+        employeeRepository.save(employee);
     }
 
     @Test
     public void fetchLaptopRecord() {
-        Laptop laptop = laptopRepository.findById(1l).get();
-        assertEquals("Lenovo", laptop.getCompany());
-        assertEquals("Rajendra", laptop.getEmployee().getName());
+        lazyTesting.fetchLaptop();
     }
 
     @Test

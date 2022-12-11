@@ -23,7 +23,6 @@ public class Laptop implements Serializable {
     @NonNull
     private String company;
 
-    @OneToOne(cascade = CascadeType.ALL,
-            fetch = FetchType.LAZY)
+    @OneToOne(cascade = CascadeType.ALL, fetch= FetchType.LAZY)
     private Employee employee;
 }
