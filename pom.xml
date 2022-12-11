@@ -10,7 +10,8 @@
         <module>Spring-Boot-REST-Exception-Handling</module>
         <module>Spring-Boot-H2-Validation-Example</module>
 		<module>SpringBoot-OneToOne-UniDirectional-Mapping</module>
-	</modules>
+        <module>SpringBoot-OneToOne-BiDirectional-Mapping</module>
+    </modules>
 	<name>spring-boot-examples</name>
 	<description>Parent Module for Spring Boot Examples</description>
 	<packaging>pom</packaging>

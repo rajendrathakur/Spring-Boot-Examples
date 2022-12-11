@@ -1,5 +1,6 @@
 package com.springboot.examples.entity;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.*;
 
 import javax.persistence.*;
@@ -22,7 +23,7 @@ public class Laptop implements Serializable {
     @NonNull
     private String company;
 
-    @OneToOne(cascade = CascadeType.ALL)
-    @MapsId
+    @OneToOne(cascade = CascadeType.ALL,
+            fetch = FetchType.LAZY)
     private Employee employee;
 }
