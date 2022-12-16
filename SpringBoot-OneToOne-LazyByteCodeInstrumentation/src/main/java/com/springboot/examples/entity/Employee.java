@@ -1,6 +1,8 @@
 package com.springboot.examples.entity;
 
 import lombok.*;
+import org.hibernate.annotations.LazyToOne;
+import org.hibernate.annotations.LazyToOneOption;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -23,6 +25,7 @@ public class Employee implements Serializable {
     private int salary;
 
     @OneToOne(cascade = CascadeType.ALL, mappedBy = "employee", fetch = FetchType.LAZY)
+    @LazyToOne(LazyToOneOption.NO_PROXY)
     private Laptop laptop;
 
 

@@ -2,7 +2,10 @@ package com.springboot.examples.entity;
 
 import lombok.*;
 
-import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import java.io.Serializable;
 
 @Entity
@@ -21,9 +24,5 @@ public class Employee implements Serializable {
 
     @NonNull
     private int salary;
-
-    @OneToOne(cascade = CascadeType.ALL, mappedBy = "employee", fetch = FetchType.LAZY)
-    private Laptop laptop;
-
 
 }

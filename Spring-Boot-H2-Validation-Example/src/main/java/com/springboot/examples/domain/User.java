@@ -1,6 +1,5 @@
 package com.springboot.examples.domain;
 
-import com.springboot.examples.model.AddressInfo;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;

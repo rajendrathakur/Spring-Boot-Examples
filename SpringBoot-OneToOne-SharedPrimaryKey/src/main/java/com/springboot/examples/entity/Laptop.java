@@ -13,7 +13,7 @@ import java.io.Serializable;
 public class Laptop implements Serializable {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+  //  @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
     @NonNull
@@ -22,6 +22,7 @@ public class Laptop implements Serializable {
     @NonNull
     private String company;
 
-    @OneToOne(cascade = CascadeType.ALL, fetch= FetchType.LAZY)
+    @OneToOne(cascade = CascadeType.ALL,fetch = FetchType.LAZY)
+    @MapsId
     private Employee employee;
 }

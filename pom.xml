@@ -11,7 +11,9 @@
         <module>Spring-Boot-H2-Validation-Example</module>
 		<module>SpringBoot-OneToOne-UniDirectional-Mapping</module>
         <module>SpringBoot-OneToOne-BiDirectional-Mapping</module>
-    </modules>
+		<module>SpringBoot-OneToOne-SharedPrimaryKey</module>
+		<module>SpringBoot-OneToOne-LazyByteCodeInstrumentation</module>
+	</modules>
 	<name>spring-boot-examples</name>
 	<description>Parent Module for Spring Boot Examples</description>
 	<packaging>pom</packaging>
