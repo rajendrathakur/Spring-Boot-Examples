@@ -14,6 +14,7 @@
 		<module>SpringBoot-OneToOne-SharedPrimaryKey</module>
 		<module>SpringBoot-OneToOne-LazyByteCodeInstrumentation</module>
 		<module>SpringBoot-OneToMany-UniDirectional-Mapping_ChildToParent</module>
+		<module>SpringBoot-OneToMany-UniDirectional-Mapping_ParentToChild</module>
 	</modules>
 	<name>spring-boot-examples</name>
 	<description>Parent Module for Spring Boot Examples</description>
