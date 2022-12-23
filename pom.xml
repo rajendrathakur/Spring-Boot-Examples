@@ -16,6 +16,7 @@
 		<module>SpringBoot-OneToMany-UniDirectional-Mapping_ChildToParent</module>
 		<module>SpringBoot-OneToMany-UniDirectional-Mapping_ParentToChild</module>
         <module>SpringBoot-OneToMany-BiDirectional-Mapping</module>
+        <module>SpringBoot-Cascade-Vs-OrphanRemoval</module>
     </modules>
 	<name>spring-boot-examples</name>
 	<description>Parent Module for Spring Boot Examples</description>
