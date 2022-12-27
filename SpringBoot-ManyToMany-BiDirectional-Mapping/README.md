@@ -1,7 +1,7 @@
 ![img.png](img.png)
 
 Case-1:
-![img_1.png](img_1.png)
+![](img_1.png)
 Case-2:
 ![img_2.png](img_2.png)
 Case-3:
