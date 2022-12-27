@@ -1,13 +1,13 @@
 ![manytomay_Representation](https://user-images.githubusercontent.com/33597536/209601188-ee908ab7-9981-4721-a36d-611558339519.png)
 
 Case-1:
-If we keep @ManyToMany only in Model entity like below
- @ManyToMany(cascade = CascadeType.PERSIST )
- private Set<Manufacturer> manufacturers = new HashSet<>();
-Then below tables are created:
-o	manufacturer
-o	model
-o	model_manufacturers
+If we keep @ManyToMany only in Model entity like below  
+ @ManyToMany(cascade = CascadeType.PERSIST )  
+ private Set<Manufacturer> manufacturers = new HashSet<>();  
+Then below tables are created:  
+o	manufacturer  
+o	model  
+o	model_manufacturers  
   
 Case-2:
   If we keep @ManyToMany only in Manufacturer entity like below
