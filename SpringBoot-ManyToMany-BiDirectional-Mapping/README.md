@@ -3,12 +3,11 @@
 Case-1:
 If we keep @ManyToMany only in Model entity like below
  @ManyToMany(cascade = CascadeType.PERSIST )
-  private Set<Manufacturer> manufacturers = new HashSet<>();
-
+ private Set<Manufacturer> manufacturers = new HashSet<>();
 Then below tables are created:
-manufacturer
-model
-model_manufacturers  
+o	manufacturer
+o	model
+o	model_manufacturers
   
 Case-2:
   If we keep @ManyToMany only in Manufacturer entity like below
