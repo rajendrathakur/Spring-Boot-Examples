@@ -3,14 +3,13 @@ package com.springboot.examples.entity;
 import lombok.*;
 
 import javax.persistence.*;
-import java.io.Serializable;
 
 @Entity
 @Getter
 @Setter
 @NoArgsConstructor
 @RequiredArgsConstructor
-public class Employee implements Serializable {
+public class Project {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -20,9 +19,7 @@ public class Employee implements Serializable {
     private String name;
 
     @NonNull
-    private int salary;
-
-    @OneToOne(cascade = CascadeType.ALL, mappedBy = "employee", fetch = FetchType.LAZY)
-    private Laptop laptop;
+    @OneToOne(cascade = CascadeType.PERSIST, fetch = FetchType.LAZY)
+    private Manager manager;
 
 }

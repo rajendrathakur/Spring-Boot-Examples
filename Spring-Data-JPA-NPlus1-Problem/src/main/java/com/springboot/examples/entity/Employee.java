@@ -3,14 +3,15 @@ package com.springboot.examples.entity;
 import lombok.*;
 
 import javax.persistence.*;
-import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Getter
 @Setter
 @NoArgsConstructor
 @RequiredArgsConstructor
-public class Employee implements Serializable {
+public class Employee {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -22,7 +23,11 @@ public class Employee implements Serializable {
     @NonNull
     private int salary;
 
-    @OneToOne(cascade = CascadeType.ALL, mappedBy = "employee", fetch = FetchType.LAZY)
-    private Laptop laptop;
+    @NonNull
+    @ManyToOne(fetch = FetchType.LAZY)
+    private Department department;
+
+    @ManyToMany(cascade = CascadeType.PERSIST)
+    private Set<Project> projects = new HashSet<>();
 
 }

@@ -18,6 +18,7 @@
         <module>SpringBoot-OneToMany-BiDirectional-Mapping</module>
         <module>SpringBoot-Cascade-Vs-OrphanRemoval</module>
         <module>SpringBoot-ManyToMany-BiDirectional-Mapping</module>
+        <module>Spring-Data-JPA-NPlus1-Problem</module>
     </modules>
 	<name>spring-boot-examples</name>
 	<description>Parent Module for Spring Boot Examples</description>
