@@ -20,7 +20,8 @@
         <module>SpringBoot-ManyToMany-BiDirectional-Mapping</module>
         <module>Spring-Data-JPA-NPlus1-Problem</module>
 		<module>Spring-Data-JPA-Derived-Queries</module>
-	</modules>
+        <module>SpringBoot-REST-CRUD-MySQL</module>
+    </modules>
 	<name>spring-boot-examples</name>
 	<description>Parent Module for Spring Boot Examples</description>
 	<packaging>pom</packaging>
