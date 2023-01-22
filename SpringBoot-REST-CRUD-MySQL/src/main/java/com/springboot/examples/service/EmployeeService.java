@@ -6,19 +6,23 @@ import com.springboot.examples.model.EmployeeDto;
 import java.util.List;
 
 public interface EmployeeService {
+
   EmployeeDto createEmployee(EmployeeDto employeeDto);
+
 
   EmployeeDto fetchEmployee(Long id);
 
-  List<EmployeeDto> fetchEmployees();
-
-  List<EmployeeDto> fetchEmployeesByCity(String name);
 
   EmployeeDto updateEmployee(EmployeeDto employeeDto, Long id);
 
+
+  List<EmployeeDto> fetchEmployeesByCity(String city);
+
+  List<EmployeeDto> fetchEmployees();
+
   void deleteEmployee(Long id);
 
-  void deleteAllEmployee();
+  void deleteEmployees();
 
 
 

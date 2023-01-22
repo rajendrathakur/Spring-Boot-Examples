@@ -16,13 +16,13 @@ public class EmployeeController {
     private EmployeeService employeeService;
 
     @PostMapping
+    //@ResponseStatus(HttpStatus.CREATED)
     public ResponseEntity createEmployee(@RequestBody EmployeeDto employeeDto, @RequestHeader("User-Agent") String userAgent) {
-        System.out.println("Request Header is  " + userAgent);
+        System.out.println("User agent  " + userAgent);
         return ResponseEntity.status(HttpStatus.CREATED)
                 .header("User-Agent", userAgent)
                 .body(employeeService.createEmployee(employeeDto));
     }
-
 
     @GetMapping(value = "{id}")
     public EmployeeDto fetchEmployee(@PathVariable Long id) {
@@ -30,20 +30,19 @@ public class EmployeeController {
     }
 
     @GetMapping("query")
-    public List<EmployeeDto> fetchEmployeesByCity(@RequestParam(required = false) String city) {
+    public List<EmployeeDto> fetchEmployees(@RequestParam(required = false) String city) {
         if (city != null) {
             return employeeService.fetchEmployeesByCity(city);
         } else {
             return employeeService.fetchEmployees();
         }
-    }
 
+    }
 
     @PutMapping(value = "{id}")
     public EmployeeDto updateEmployee(@PathVariable Long id, @RequestBody EmployeeDto employeeDto) {
         return employeeService.updateEmployee(employeeDto, id);
     }
-
 
     @DeleteMapping(value = "{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
@@ -53,8 +52,9 @@ public class EmployeeController {
 
     @DeleteMapping()
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void deleteEmployee() {
-        employeeService.deleteAllEmployee();
+    public void deleteEmployees() {
+        employeeService.deleteEmployees();
     }
+
 
 }
