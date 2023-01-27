@@ -1,12 +1,15 @@
 package com.springboot.examples.service.impl;
 
 import com.springboot.examples.entity.Employee;
+import com.springboot.examples.exception.ResourceNotFoundException;
 import com.springboot.examples.model.EmployeeDto;
 import com.springboot.examples.repository.EmployeeRepository;
 import com.springboot.examples.service.EmployeeService;
 import lombok.AllArgsConstructor;
 import org.modelmapper.ModelMapper;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -25,7 +28,9 @@ public class EmployeeServiceImpl implements EmployeeService {
 
     @Override
     public void deleteEmployee(Long id) {
-        employeeRepository.deleteById(id);
+        Employee employee = employeeRepository.findById(id).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND,
+                String.format("Resource id %d not found in our records", id)));
+        employeeRepository.delete(employee);
     }
 
     @Override
@@ -41,13 +46,14 @@ public class EmployeeServiceImpl implements EmployeeService {
 
     @Override
     public EmployeeDto fetchEmployee(Long id) {
-        Employee employee = employeeRepository.findById(id).orElseThrow();
+        Integer.parseInt("abc");
+        Employee employee = employeeRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException(id));
         return convertEntityToModel(employee);
     }
 
     @Override
     public EmployeeDto updateEmployee(EmployeeDto employeeDto, Long id) {
-        Employee employee = employeeRepository.findById(id).orElseThrow();
+        Employee employee = employeeRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException(id));
         convertModelToEntity(employeeDto, employee, id);
         employeeRepository.save(employee);
         return convertEntityToModel(employee);
