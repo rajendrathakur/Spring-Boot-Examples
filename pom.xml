@@ -21,6 +21,7 @@
         <module>Spring-Data-JPA-NPlus1-Problem</module>
 		<module>Spring-Data-JPA-Derived-Queries</module>
         <module>SpringBoot-REST-CRUD-MySQL</module>
+        <module>SpringBoot-Rest-Validation-Demo</module>
     </modules>
 	<name>spring-boot-examples</name>
 	<description>Parent Module for Spring Boot Examples</description>
