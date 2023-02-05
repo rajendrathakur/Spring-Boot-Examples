@@ -1,4 +1,4 @@
-package com.springboot.examples.domain;
+package com.springboot.examples.model;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.AllArgsConstructor;
@@ -12,7 +12,7 @@ import java.util.List;
 @AllArgsConstructor
 public class ErrorResponse {
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy hh:mm:ss")
-    private LocalDateTime localDateTime;
+    private LocalDateTime timeStamp;
     private HttpStatus status;
     private String path;
     private List<String> errors;

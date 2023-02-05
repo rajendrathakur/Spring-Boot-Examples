@@ -2,25 +2,19 @@ package com.springboot.examples.validation;
 
 import javax.validation.Constraint;
 import javax.validation.Payload;
-import java.lang.annotation.Documented;
-import java.lang.annotation.Retention;
-import java.lang.annotation.RetentionPolicy;
-import java.lang.annotation.Target;
+import java.lang.annotation.*;
 
-import static java.lang.annotation.ElementType.FIELD;
-import static java.lang.annotation.ElementType.PARAMETER;
-
-@Target({FIELD,PARAMETER})
-@Retention(RetentionPolicy.RUNTIME)
 @Documented
-@Constraint(validatedBy = PinCodeValidator.class)
+@Constraint(
+        validatedBy = {PinCodeValidator.class}
+)
+@Target({ElementType.METHOD, ElementType.FIELD})
+@Retention(RetentionPolicy.RUNTIME)
 public @interface PinCodeValidation {
-    //error message
-    public String message() default "PinCode must be either 500070 or 500090";
 
-    //represents group of constraints
-    public Class<?>[] groups() default {};
+    String message() default "pincode should be either 500070 or 500090";
 
-    //represents additional information about annotation
-    public Class<? extends Payload>[] payload() default {};
+    Class<?>[] groups() default {};
+
+    Class<? extends Payload>[] payload() default {};
 }

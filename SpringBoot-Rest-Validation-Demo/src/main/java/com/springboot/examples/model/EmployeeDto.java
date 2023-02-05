@@ -16,16 +16,15 @@ public class EmployeeDto {
 
     private int id;
 
-    @NotBlank(message = "Name is required")
+    @NotBlank(message = "Name can not be blank", groups = GroupOne.class)
     private String name;
 
-    @Email(message = "Email is not valid")
+  @Email(message = "Email is not valid")
     private String email;
 
-    @Min(message = "Salary must be atleast 40k", value = 40000)
-    @Max(message = "Salary must be less than 100k", value = 100000)
+   @Min(message = "salary must be minimum 40k", value = 40000)
     private int salary;
 
-    @Valid
+     @Valid
     private AddressDto addressDto;
 }

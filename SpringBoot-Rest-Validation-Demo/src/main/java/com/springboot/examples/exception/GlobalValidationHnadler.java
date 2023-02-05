@@ -1,6 +1,6 @@
 package com.springboot.examples.exception;
 
-import com.springboot.examples.domain.ErrorResponse;
+import com.springboot.examples.model.ErrorResponse;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -17,33 +17,34 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @RestControllerAdvice
-public class GlobalExceptionHnadler extends ResponseEntityExceptionHandler {
+public class GlobalValidationHnadler extends ResponseEntityExceptionHandler {
+
     @Override
-    protected ResponseEntity<Object> handleMethodArgumentNotValid(MethodArgumentNotValidException ex,
-                                                                  HttpHeaders headers,
-                                                                  HttpStatus status,
-                                                                  WebRequest request) {
-       List<String> errors =  ex.getBindingResult().getFieldErrors().stream().map(error -> error.getDefaultMessage())
+    protected ResponseEntity<Object> handleMethodArgumentNotValid(MethodArgumentNotValidException ex, HttpHeaders headers, HttpStatus status, WebRequest request) {
+        List<String> errors = ex.getBindingResult().getFieldErrors().stream()
+                .map(error -> error.getDefaultMessage())
                 .collect(Collectors.toList());
-       ErrorResponse errorResponse = new ErrorResponse(LocalDateTime.now(),status,
-               request.getDescription(false),
-               errors);
-       return new ResponseEntity<>(errorResponse, status);
+        ErrorResponse errorResponse = new ErrorResponse(LocalDateTime.now(), status,
+                request.getDescription(false), errors);
+        return new ResponseEntity<>(errorResponse, status);
     }
 
     @ExceptionHandler(ConstraintViolationException.class)
-    public ResponseEntity<ErrorResponse> handleConstraintViolationException(ConstraintViolationException ex, WebRequest request) {
+    protected ResponseEntity<Object> handleConstraintViolation(ConstraintViolationException ex,  WebRequest request) {
+
         ErrorResponse errorResponse = new ErrorResponse(LocalDateTime.now(), HttpStatus.BAD_REQUEST,
-                request.getDescription(false),
-                Arrays.asList(ex.getMessage()));
+                request.getDescription(false), Arrays.asList(ex.getMessage()));
         return new ResponseEntity<>(errorResponse, HttpStatus.BAD_REQUEST);
     }
 
     @ExceptionHandler(EmployeeNotFoundException.class)
-    public ResponseEntity<ErrorResponse> handleUserNotFoundException(EmployeeNotFoundException ex, WebRequest request) {
+    protected ResponseEntity<Object> handleEmployeeNotFoundException(EmployeeNotFoundException ex,  WebRequest request) {
+
         ErrorResponse errorResponse = new ErrorResponse(LocalDateTime.now(), HttpStatus.NOT_FOUND,
-                request.getDescription(false),
-                Arrays.asList(ex.getMessage()));
+                request.getDescription(false), Arrays.asList(ex.getMessage()));
         return new ResponseEntity<>(errorResponse, HttpStatus.NOT_FOUND);
     }
+
+
+
 }

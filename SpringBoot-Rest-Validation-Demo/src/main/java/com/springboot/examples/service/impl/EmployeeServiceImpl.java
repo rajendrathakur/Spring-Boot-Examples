@@ -26,15 +26,17 @@ public class EmployeeServiceImpl implements EmployeeService {
         return convertEntityToModel(employee);
     }
 
+    private EmployeeDto convertEntityToModel(Employee employee) {
+        modelMapper.getConfiguration().setMatchingStrategy(MatchingStrategies.LOOSE);
+        EmployeeDto employeeDto =  modelMapper.map(employee, EmployeeDto.class);
+        return employeeDto;
+    }
+
     @Override
     public EmployeeDto fetchEmployee(int id) {
         Employee employee = employeeRepository.findById(id).orElseThrow(() -> new EmployeeNotFoundException(id));
         return convertEntityToModel(employee);
     }
 
-    public EmployeeDto convertEntityToModel(Employee employee) {
-        modelMapper.getConfiguration().setMatchingStrategy(MatchingStrategies.LOOSE);
-        EmployeeDto employeeDto =  modelMapper.map(employee, EmployeeDto.class);
-        return employeeDto;
-    }
+
 }

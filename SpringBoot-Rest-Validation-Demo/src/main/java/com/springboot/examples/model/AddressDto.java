@@ -14,16 +14,14 @@ import javax.validation.constraints.Size;
 public class AddressDto {
 
     private int id;
-   @NotBlank(message = "houseNumber can not be blank")
+
+    @NotBlank(message = "housenumber can't be blank")
     private String houseNumber;
 
-    @NotBlank(message = "street can not be blank")
+    @NotBlank(message = "Street can't be blank")
     private String street;
 
-    @Size.List({
-         @Size(min=5, message = "City must be atleast {min} characters"),
-         @Size(max=9, message = "City must be less than {max} characters")
-    })
+   @Size(max = 8, message = "City name must not have moer than {max} characters")
     private String city;
 
     @PinCodeValidation
