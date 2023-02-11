@@ -22,6 +22,8 @@
 		<module>Spring-Data-JPA-Derived-Queries</module>
         <module>SpringBoot-REST-CRUD-MySQL</module>
         <module>SpringBoot-Rest-Validation-Demo</module>
+        <module>SpringBoot-REST-Swagger-OpenAPI-V3</module>
+        <module>SpringBoot-REST-Swagger-Springfox-V2</module>
     </modules>
 	<name>spring-boot-examples</name>
 	<description>Parent Module for Spring Boot Examples</description>
