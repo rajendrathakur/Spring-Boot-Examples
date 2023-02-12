@@ -23,7 +23,7 @@ public class EmployeeController {
             @ApiResponse(code = 201, message = "Employee is created Successfully", response = EmployeeDto.class),
             @ApiResponse(code = 400, message = "Invalid employee data")
     })
-    public ResponseEntity createEmployee(@RequestBody EmployeeDto employeeDto, @RequestHeader("User-Agent") String userAgent) {
+    public ResponseEntity createEmployee(@ApiParam(value = "This is Id") @RequestBody EmployeeDto employeeDto, @RequestHeader("User-Agent") String userAgent) {
         System.out.println("User agent  " + userAgent);
         return ResponseEntity.status(HttpStatus.CREATED)
                 .header("User-Agent", userAgent)
@@ -33,7 +33,7 @@ public class EmployeeController {
     @GetMapping(value = "{id}")
     @ApiOperation(value = "Get Employee", notes = "This API is to fetch employee")
     @ApiResponses(value = {
-            @ApiResponse(code = 200, message = "Employee is fetched Successfully", response = EmployeeDto.class),
+            @ApiResponse(code = 200, message = "Employee is fetched Successfully"),
             @ApiResponse(code = 404, message = "Employee not found")
     })
     public EmployeeDto fetchEmployee(@ApiParam(value = "This is employee id") @PathVariable Long id) {
@@ -64,12 +64,22 @@ public class EmployeeController {
     }
 
     @DeleteMapping(value = "{id}")
+    @ApiOperation(value = "Delete Employee", notes = "This API is to delete employee")
+    @ApiResponses(value = {
+            @ApiResponse(code = 204, message = "Employee is deleted Successfully"),
+            @ApiResponse(code = 404, message = "Employee not found")
+    })
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void deleteEmployee(@PathVariable Long id) {
         employeeService.deleteEmployee(id);
     }
 
     @DeleteMapping()
+    @ApiOperation(value = "Delete Employee", notes = "This API is to delete employeess")
+    @ApiResponses(value = {
+            @ApiResponse(code = 204, message = "Employees are deleted Successfully"),
+            @ApiResponse(code = 404, message = "Employee not found")
+    })
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void deleteEmployees() {
         employeeService.deleteEmployees();

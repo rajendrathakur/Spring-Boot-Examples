@@ -46,7 +46,6 @@ public class EmployeeServiceImpl implements EmployeeService {
 
     @Override
     public EmployeeDto fetchEmployee(Long id) {
-        Integer.parseInt("abc");
         Employee employee = employeeRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException(id));
         return convertEntityToModel(employee);
     }
