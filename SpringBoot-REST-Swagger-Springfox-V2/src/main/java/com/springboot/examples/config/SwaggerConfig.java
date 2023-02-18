@@ -7,45 +7,25 @@ import springfox.documentation.builders.PathSelectors;
 import springfox.documentation.builders.RequestHandlerSelectors;
 import springfox.documentation.oas.annotations.EnableOpenApi;
 import springfox.documentation.service.ApiInfo;
-import springfox.documentation.service.Contact;
 import springfox.documentation.spi.DocumentationType;
 import springfox.documentation.spring.web.plugins.Docket;
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
-import static springfox.documentation.builders.PathSelectors.regex;
-
 @Configuration
 //@EnableSwagger2
 //@EnableOpenApi
-public class SpringFoxConfig {
+public class SwaggerConfig {
 
     @Bean
-    public Docket docket() {
-       return new Docket(DocumentationType.SWAGGER_2)
-               .apiInfo(apiInfo())
-               .select()
-               .apis(RequestHandlerSelectors.basePackage("com.springboot.examples.controller"))
-               .paths(PathSelectors.regex("/v1/employees/.*"))
-               .build();
-    }
-
-    private ApiInfo apiInfo() {
-        return new ApiInfoBuilder()
-                .title("Employee API")
-                .description("Employee API's")
-                .license("Apache License")
-                .version("1.0.0")
-                .build();
-    }
-  /*  @Bean
-    public Docket docket() {
+   public Docket docket() {
         return new Docket(DocumentationType.SWAGGER_2)
                 .select()
                 .apis(RequestHandlerSelectors.basePackage("com.springboot.examples.controller"))
-                .paths(regex("/v1/employees/.*"))
+                .paths(PathSelectors.regex("/v1/employees/.*"))
                 .build()
                 .apiInfo(apiInfo());
-    }
+
+   }
 
     private ApiInfo apiInfo() {
         return new ApiInfoBuilder()
@@ -57,6 +37,4 @@ public class SpringFoxConfig {
                 .licenseUrl("http://employeeapi.com")
                 .build();
     }
-*/
-
 }

@@ -8,12 +8,12 @@ import io.swagger.v3.oas.annotations.media.ArraySchema;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
-import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -31,7 +31,7 @@ public class EmployeeController {
             @ApiResponse(responseCode = "400", description = "Invalid Employee Data")
     })
     @PostMapping
-    public ResponseEntity createEmployee(@RequestBody EmployeeDto employeeDto, @RequestHeader("User-Agent") String userAgent) {
+    public ResponseEntity createEmployee(@Valid  @RequestBody EmployeeDto employeeDto, @RequestHeader("User-Agent") String userAgent) {
         System.out.println("User agent  " + userAgent);
         return ResponseEntity.status(HttpStatus.CREATED)
                 .header("User-Agent", userAgent)
@@ -77,7 +77,7 @@ public class EmployeeController {
                     @ApiResponse(responseCode = "404", description = "Employee record not found")
             })
     @PutMapping(value = "{id}")
-    public EmployeeDto updateEmployee(@Parameter(description = "This is Employee Id") @PathVariable Long id, @RequestBody EmployeeDto employeeDto) {
+    public EmployeeDto updateEmployee(@Parameter(description = "This is Employee Id") @PathVariable Long id, @Valid @RequestBody EmployeeDto employeeDto) {
         return employeeService.updateEmployee(employeeDto, id);
     }
 
