@@ -30,12 +30,12 @@ public class EmployeeControllerTest {
 
     @Test
     void createEmployeeWithValidData_thenReturn201() throws Exception {
-        EmployeeDto employeeDto = new EmployeeDto("Rajendra", 35, 45000, "Noida");
-        when(employeeService.createEmployee(employeeDto)).thenReturn(employeeDto);
-        mockMvc.perform(post("/v1/employees/").contentType("application/json")
-                .content(objectMapper.writeValueAsString(employeeDto))
-                .header("User-Agent", "chrome"))
-                .andExpect(status().isCreated());
+      EmployeeDto employeeDto = new EmployeeDto("Ashok", 35, 45000, "Hyderabad");
+      when(employeeService.createEmployee(employeeDto)).thenReturn(employeeDto);
+      mockMvc.perform(post("/v1/employees/").contentType("application/json")
+              .content(objectMapper.writeValueAsString(employeeDto))
+              .header("user-agent", "chrome"))
+              .andExpect(status().isCreated());
     }
 
     @Test
@@ -77,8 +77,7 @@ public class EmployeeControllerTest {
     void fetchEmployee_thenReturn200() throws Exception {
         EmployeeDto employeeDto = new EmployeeDto("Rajendra", 35, 45000, "Noida");
         when(employeeService.fetchEmployee(2l)).thenReturn((employeeDto));
-        mockMvc.perform(get("/v1/employees/{id}", 2l).contentType("application/json")
-                        .content(objectMapper.writeValueAsString(employeeDto)))
+        mockMvc.perform(get("/v1/employees/{id}", 2l))
                 .andExpect(jsonPath("$.name").value("Rajendra"))
                 .andExpect(jsonPath("$.city").value("Noida"))
                 .andExpect(status().isOk());
@@ -86,28 +85,22 @@ public class EmployeeControllerTest {
 
     @Test
     void fetchEmployee_EmployeeNotFoundthenReturn404() throws Exception {
-        EmployeeDto employeeDto = new EmployeeDto("Rajendra", 35, 45000, "Noida");
         when(employeeService.fetchEmployee(2l)).thenThrow((new ResourceNotFoundException(2l)));
-        mockMvc.perform(get("/v1/employees/{id}", 2l).contentType("application/json")
-                        .content(objectMapper.writeValueAsString(employeeDto)))
+        mockMvc.perform(get("/v1/employees/{id}", 2l))
                 .andExpect(status().isNotFound());
     }
 
     @Test
     void deleteEmployee_thenReturn204() throws Exception {
-        EmployeeDto employeeDto = new EmployeeDto("Rajendra", 35, 45000, "Noida");
         doNothing().when(employeeService).deleteEmployee(2l);
-        mockMvc.perform(delete("/v1/employees/{id}", 2l).contentType("application/json")
-                        .content(objectMapper.writeValueAsString(employeeDto)))
+        mockMvc.perform(delete("/v1/employees/{id}", 2l))
                 .andExpect(status().isNoContent());
     }
 
     @Test
     void deleteEmployee_EmployeeNotFound_thenReturn404() throws Exception {
-        EmployeeDto employeeDto = new EmployeeDto("Rajendra", 35, 45000, "Noida");
         doThrow(new ResourceNotFoundException(2l)).when(employeeService).deleteEmployee(2l);
-        mockMvc.perform(delete("/v1/employees/{id}", 2l).contentType("application/json")
-                        .content(objectMapper.writeValueAsString(employeeDto)))
+        mockMvc.perform(delete("/v1/employees/{id}", 2l))
                 .andExpect(status().isNotFound());
     }
 
