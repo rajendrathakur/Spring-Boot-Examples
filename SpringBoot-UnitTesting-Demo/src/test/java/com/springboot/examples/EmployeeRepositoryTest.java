@@ -10,10 +10,10 @@ import org.springframework.test.context.ActiveProfiles;
 
 import java.util.List;
 
-import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.AssertionsForInterfaceTypes.assertThat;
+
 
 @DataJpaTest
-//@AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
 @ActiveProfiles("test")
 public class EmployeeRepositoryTest {
 
@@ -24,21 +24,21 @@ public class EmployeeRepositoryTest {
     private EmployeeRepository employeeRepository;
 
     @Test
-    public void fetchEmployeeRecords_norecords() {
-        List<Employee> employeeList = employeeRepository.findAll();
-        assert(employeeList).isEmpty();
+    public void fetchEmployeeRecords_NoRecords() {
+        List<Employee> emplpyeesList = employeeRepository.findAll();
+        assert(emplpyeesList).isEmpty();
     }
 
     @Test
-    public void fetchEmployeeRecords_allrecords() {
-        Employee employee1 = new Employee("Ashok", 23,34000, "Hyderabad");
+    public void fetchEmployeeRecords_AllRecords() {
+        Employee employee1 = new Employee("Ashok", 24, 45000, "Hyderabad");
         entityManager.persist(employee1);
 
-        Employee employee2 = new Employee("Mohan", 28,44000, "Hyderabad");
+        Employee employee2 = new Employee("Raja", 24, 44000, "Hyderabad");
         entityManager.persist(employee2);
 
-        List<Employee> employeeList = employeeRepository.findAll();
-        assertThat(employeeList).hasSize(2).contains(employee1, employee2);
+        List<Employee> emplpyeesList = employeeRepository.findAll();
+        assertThat(emplpyeesList).hasSize(2).contains(employee1, employee2);
     }
 
     @Test
