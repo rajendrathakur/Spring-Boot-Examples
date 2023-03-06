@@ -33,7 +33,7 @@ public class EmployeeServiceImpl implements EmployeeService {
         employee.setStatus("Accepted");
         employee.setStatusCode(202);
         employeeRepository.save(employee);
-        log.info("This request takes 8 seconds with thread: "+ Thread.currentThread().getName());
+        log.info("This request takes 15 seconds for EPF calculation with thread: "+ Thread.currentThread().getName());
         Thread.sleep(15000l);
         employee.setPfAmount(250000);
         employee.setPensionAmount(150000);
@@ -44,11 +44,11 @@ public class EmployeeServiceImpl implements EmployeeService {
     }
 
     @Override
-    @Async
+    @Async("threadPooltaskExecutor")
     public void employeePFCalculation(long employeeId) throws InterruptedException {
+        Employee employee = employeeRepository.findById(employeeId).orElseThrow(() -> new ResourceNotFoundException(employeeId));
         log.info("Employee EPF Calculation started with thread: "+ Thread.currentThread().getName());
         Thread.sleep(15000l);
-        Employee employee = employeeRepository.findById(employeeId).orElseThrow(() -> new ResourceNotFoundException(employeeId));
         employee = null;
         employee.setPfAmount(250000);
         employee.setPensionAmount(150000);

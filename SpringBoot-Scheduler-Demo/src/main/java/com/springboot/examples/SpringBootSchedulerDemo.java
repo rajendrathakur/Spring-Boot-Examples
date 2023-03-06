@@ -9,7 +9,6 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 @SpringBootApplication
 @EnableScheduling
 @EnableAsync
-@ConditionalOnProperty(name = "scheduler.enabled", matchIfMissing = true)
 public class SpringBootSchedulerDemo {
     public static void main(String[] args) {
         SpringApplication.run(SpringBootSchedulerDemo.class);

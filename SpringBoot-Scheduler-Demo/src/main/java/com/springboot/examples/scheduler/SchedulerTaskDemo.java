@@ -26,21 +26,19 @@ public class SchedulerTaskDemo {
 
     private ModelMapper modelMapper;
 
-    @Scheduled(fixedRate=5000l)
+    @Scheduled(fixedRate = 5000l)
     @Async
     public void createEmployee() throws InterruptedException{
         LOGGER.info("Employee Creation Started at "+ Thread.currentThread().getName());
         EmployeeDto employeeDto = new EmployeeDto("Rajendra", 34, 45000, "Hyderabad");
         Employee employee = modelMapper.map(employeeDto, Employee.class);
         employeeRepository.save(employee);
-        Thread.sleep(7000l);
+        Thread.sleep(7000);
         LOGGER.info("Employee Creation Ended at "+ Thread.currentThread().getName());
     }
 
-    @Scheduled(fixedRate=5000l)
-    //@Async("threadPoolTaskExecutor")
-    @Async
-    public void createDonor() throws InterruptedException{
+     //@Scheduled(fixedDelay = 5000l)
+      public void createDonor() throws InterruptedException{
         LOGGER.info("Donor Creation Started at "+ Thread.currentThread().getName());
         DonorDto donorDto = new DonorDto("Ashok", 34, 25000, "Hyderabad");
         Donor donor = modelMapper.map(donorDto, Donor.class);

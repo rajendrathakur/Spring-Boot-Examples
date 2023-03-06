@@ -16,13 +16,6 @@ public class AppConfig {
         return new ModelMapper();
     }
 
-/*    @Bean
-    public TaskScheduler taskScheduler() {
-        ThreadPoolTaskScheduler threadPoolTaskScheduler = new ThreadPoolTaskScheduler();
-        threadPoolTaskScheduler.setPoolSize(2);
-        threadPoolTaskScheduler.setThreadNamePrefix("ThreadPoolTaskScheduler");
-        return threadPoolTaskScheduler;
-    }*/
 
  /*   @Bean("threadPoolTaskExecutor")
     public TaskExecutor getAsyncExecutor() {
@@ -34,11 +27,11 @@ public class AppConfig {
         return executor;
     }*/
 
-    @Bean
-    public TaskExecutor taskExecutor() {
+    @Bean("threadPooltaskExecutor")
+    public TaskExecutor poolTaskExecutor() {
         ThreadPoolTaskExecutor executor = new ThreadPoolTaskExecutor();
         executor.setCorePoolSize(2);
-        executor.setMaxPoolSize(1000);
+        executor.setMaxPoolSize(20);
         executor.setWaitForTasksToCompleteOnShutdown(true);
         executor.setThreadNamePrefix("Async-");
         return executor;
