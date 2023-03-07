@@ -27,6 +27,7 @@
         <module>SpringBoot-UnitTesting-Demo</module>
         <module>SpringBoot-Async-Demo</module>
         <module>SpringBoot-Scheduler-Demo</module>
+        <module>SpringBoot-Caching-EHCache2</module>
     </modules>
 	<name>spring-boot-examples</name>
 	<description>Parent Module for Spring Boot Examples</description>
