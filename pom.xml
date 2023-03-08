@@ -28,6 +28,7 @@
         <module>SpringBoot-Async-Demo</module>
         <module>SpringBoot-Scheduler-Demo</module>
         <module>SpringBoot-Caching-EHCache2</module>
+        <module>SpringBoot-Caching-EHCache3</module>
     </modules>
 	<name>spring-boot-examples</name>
 	<description>Parent Module for Spring Boot Examples</description>
