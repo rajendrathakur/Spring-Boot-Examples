@@ -11,7 +11,7 @@
         <key-type>java.lang.Long</key-type>
         <value-type>com.springboot.examples.model.EmployeeDto</value-type>
         <expiry>
-            <ttl unit="seconds">10</ttl>
+            <ttl unit="seconds">100</ttl>
         </expiry>
         <listeners>
             <listener>

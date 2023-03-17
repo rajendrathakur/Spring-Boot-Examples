@@ -73,11 +73,8 @@ public class EmployeeServiceImpl implements EmployeeService {
     public EmployeeDto updateEmployee(EmployeeDto employeeDto, Long id) {
         log.info("About to update employee with id: "+ id + " from the service");
         Employee employee = employeeRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException(id));
-        log.info("Updated employee city: "+ employee.getCity());
         convertModelToEntity(employeeDto, employee, id);
-        log.info("Updated employee city before save: "+ employee.getCity());
         employeeRepository.save(employee);
-        log.info("Updated employee with id: "+ id + " to the database");
         return convertEntityToModel(employee);
     }
 

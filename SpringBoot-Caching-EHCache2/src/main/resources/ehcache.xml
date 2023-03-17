@@ -7,8 +7,8 @@
            overflowToDisk="true"
            diskPersistent="true"
            memoryStoreEvictionPolicy="LRU"
-           timeToLiveSeconds="120"
-           />
+           timeToLiveSeconds="100"
+    />
     <cache name="EmployeeListCache"
            maxElementsInMemory="2000"
            maxElementsOnDisk="10000"
@@ -17,5 +17,5 @@
            diskPersistent="true"
            memoryStoreEvictionPolicy="LRU"
            timeToLiveSeconds="50"
-           />
+    />
 </ehcache>
