@@ -1,5 +1,6 @@
 package com.springboot.examples.service.impl;
 
+import com.springboot.examples.controller.EmployeeController;
 import com.springboot.examples.entity.Employee;
 import com.springboot.examples.exception.ResourceNotFoundException;
 import com.springboot.examples.model.EmployeeDto;
@@ -7,6 +8,8 @@ import com.springboot.examples.repository.EmployeeRepository;
 import com.springboot.examples.service.EmployeeService;
 import lombok.AllArgsConstructor;
 import org.modelmapper.ModelMapper;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
@@ -17,6 +20,8 @@ import java.util.stream.Collectors;
 @Service
 @AllArgsConstructor
 public class EmployeeServiceImpl implements EmployeeService {
+
+    private static final Logger log = LoggerFactory.getLogger(EmployeeServiceImpl.class);
     private EmployeeRepository employeeRepository;
     private ModelMapper modelMapper;
 
@@ -61,6 +66,11 @@ public class EmployeeServiceImpl implements EmployeeService {
 
     @Override
     public EmployeeDto createEmployee(EmployeeDto employeeDto) {
+        log.trace("This is a trace message, Employee Name from Employee Service : {}", employeeDto.getName());
+        log.debug("This is a debug message, Employee Name from Employee Service: {}", employeeDto.getName());
+        log.info("This is a info message, Employee Name from Employee Service : {}", employeeDto.getName());
+        log.warn("This is a warn message, Employee Name from Employee Service: {}", employeeDto.getName());
+        log.error("This is a error message, Employee Name from Employee Service: {}", employeeDto.getName());
         Employee employee = convertModelToEntity(employeeDto);
         employeeRepository.save(employee);
         return convertEntityToModel(employee);

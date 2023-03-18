@@ -5,6 +5,13 @@ import com.springboot.examples.exception.ResourceNotFoundException;
 import com.springboot.examples.model.EmployeeDto;
 import com.springboot.examples.service.EmployeeService;
 import lombok.AllArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+import org.apache.logging.log4j.LogManager;
+/*import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;*/
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -18,14 +25,19 @@ import java.util.List;
 @AllArgsConstructor
 @RequestMapping("/v1/employees/")
 public class EmployeeController {
+
+    private static final Logger log = LoggerFactory.getLogger(EmployeeController.class);
+
     private EmployeeService employeeService;
 
     @PostMapping
-    //@ResponseStatus(HttpStatus.CREATED)
-    public ResponseEntity createEmployee(@RequestBody EmployeeDto employeeDto, @RequestHeader("User-Agent") String userAgent) {
-        System.out.println("User agent  " + userAgent);
+    public ResponseEntity createEmployee(@RequestBody EmployeeDto employeeDto) {
+        log.trace("This is a trace message, Employee Name from EmployeeController : {}", employeeDto.getName());
+        log.debug("This is a debug message, Employee Name from EmployeeController: {}", employeeDto.getName());
+        log.info("This is a info message, Employee Name from EmployeeController: {}", employeeDto.getName());
+        log.warn("This is a warn message, Employee Name from EmployeeController: {}", employeeDto.getName());
+        log.error("This is a error message, Employee Name from EmployeeController: {}", employeeDto.getName());
         return ResponseEntity.status(HttpStatus.CREATED)
-                .header("User-Agent", userAgent)
                 .body(employeeService.createEmployee(employeeDto));
     }
 
